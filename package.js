@@ -7,9 +7,14 @@ Package.describe({
 });
 
 Package.onUse(function(api) {
-  api.versionsFrom('1.8.0.2');
+  api.versionsFrom('1.6.1');
   api.use('ecmascript');
+  api.use('igoandsee:coupons-collection');
   api.mainModule('methods-coupons.js', 'server');
+});
+
+Npm.depends({
+  shortid: '2.2.8'
 });
 
 Package.onTest(function(api) {

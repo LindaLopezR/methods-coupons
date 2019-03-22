@@ -12,10 +12,19 @@ Meteor.methods({
     userRegister.max = 1;
     userRegister.uses = 0;
 
-    let coupon = Coupons.insert(userRegister);
-    console.log('Creación exitosa', userRegister);
+    const email = result.email;
+    const query = {};
 
-    return coupon;
+    Coupons.find(query).map(function(entry) {
+      if (entry.email.toLowerCase() == email) {
+        return false;
+      } else {
+        let coupon = Coupons.insert(userRegister);
+        console.log('Creación exitosa', userRegister);
+
+        return coupon;
+      }
+    })  
   },
   
   getCouponUser() {
